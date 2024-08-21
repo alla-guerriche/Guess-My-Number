@@ -15,17 +15,17 @@ let highScore = 0;
 console.log(randomNumber);
 
 btnCheck.addEventListener('click', () => {
-  const gess = guessInput.value;
-  console.log(gess);
+  const guess = guessInput.value;
+  console.log(guess);
 
-  if (gess == randomNumber) {
+  if (guess == randomNumber) {
     document.querySelector('body').style.backgroundColor = '#60b347';
     displayMessage("🎉 Wow Bro it's Correct");
     highScore = score;
     document.querySelector('.highscore').textContent = highScore;
     number.textContent = randomNumber;
   } else {
-    isHighOrLess(gess);
+    isHighOrLess(guess);
   }
 });
 
@@ -43,19 +43,17 @@ const isHighOrLess = numb => {
   }
 };
 
-const Again = () => {
-  btnAgain.addEventListener('click', () => {
-    let score = 20;
+btnAgain.addEventListener('click', () => {
+  let score = 20;
 
-    document.querySelector('body').style.backgroundColor = '#222';
-    displayMessage('Start Guessing');
-    document.querySelector('.score').textContent = score;
-    document.querySelector('.highscore').textContent = highScore;
-    guessInput.value = '';
-    number.textContent = '?';
-  });
-};
-Again();
+  document.querySelector('body').style.backgroundColor = '#222';
+  displayMessage('Start Guessing');
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.highscore').textContent = highScore;
+  guessInput.value = '';
+  number.textContent = '?';
+});
+
 const Lose = scoreless => {
   if (scoreless < 0) {
     score = 0;
