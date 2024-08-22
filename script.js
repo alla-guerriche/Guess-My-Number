@@ -5,8 +5,8 @@ const guessInput = document.querySelector('.guess');
 const message = document.querySelector('.message');
 const number = document.querySelector('.number');
 
-const displayMessage = mesg => {
-  document.querySelector('.message').textContent = mesg;
+const displayMessage = message => {
+  document.querySelector('.message').textContent = message;
 };
 
 const randomNumber = Math.floor(Math.random() * 21);
@@ -17,8 +17,9 @@ console.log(randomNumber);
 btnCheck.addEventListener('click', () => {
   const guess = guessInput.value;
   console.log(guess);
-
-  if (guess == randomNumber) {
+  if (!guess) {
+    displayMessage('⛔  Not A Number');
+  } else if (guess == randomNumber) {
     document.querySelector('body').style.backgroundColor = '#60b347';
     displayMessage("🎉 Wow Bro it's Correct");
     highScore = score;
@@ -30,16 +31,13 @@ btnCheck.addEventListener('click', () => {
 });
 
 const isHighOrLess = numb => {
-  if (numb > randomNumber) {
+  if (numb !== randomNumber) {
     score--;
     Lose(score);
+    score > randomNumber
+      ? displayMessage('📈 To High bro Guess Again ')
+      : displayMessage('📉 To Low bro Guess Again ');
     document.querySelector('.score').textContent = score;
-    displayMessage('📈 To High bro Guess Again ');
-  } else {
-    score--;
-    Lose(score);
-    document.querySelector('.score').textContent = score;
-    displayMessage('📉 To Low bro Guess Again ');
   }
 };
 
